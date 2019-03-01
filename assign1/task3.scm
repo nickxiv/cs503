@@ -1,8 +1,8 @@
-(define (root-n-iter guess x n)
+(define (root-n-iter guess prev-guess x n)
     (lambda () #f)
     (cond 
-        ((good-enough? guess x n) guess)
-        (else (root-n-iter (improve-guess guess x n) x n))
+        ((good-enough? guess prev-guess x n) guess)
+        (else (root-n-iter (improve-guess guess x n) guess x n))
     )    
 )
 
@@ -19,13 +19,17 @@
         n)
 )
 
-(define (good-enough? guess x n)
-    (< (abs (- (x^n guess n) x )) 0.00000000001)
+(define (good-enough? guess prev-guess x n)
+    (< (cond 
+            ((< prev-guess guess) (/ guess prev-guess))
+            (else (/ prev-guess guess))
+        ) 
+        1.000001)
 )
 
 (define (root-n n)
     (lambda (x) 
-        (root-n-iter 1.0 x n)
+        (root-n-iter 1.0 10.0 x n)
     )
 )
 
