@@ -47,5 +47,5 @@
     (println "(halve " arg1 ") " (halve arg1))
     (println "(double " arg1 ") " (double arg1))
     (println "(div2? " arg1 ") " (div2? arg1))
-    (println "(ethiop " arg1 arg2 ") " (ethiop arg1 arg2))
+    (println "(ethiop " arg1 " "arg2 ") " (ethiop arg1 arg2))
 )
