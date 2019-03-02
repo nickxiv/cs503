@@ -44,7 +44,6 @@
     (setPort (open (getElement ScamArgs 1) 'read))
     (define f (eval (readExpr) this))
     (define arg2 (readExpr))
-    (println "(S " f " " arg2 ") is " (S f 0))
-    (println "(w " f " " arg2 ") is " (w f 0))
-
+    (println "(S " f " " arg2 ") is " (fmt "%.15f" (S f 0)))
+    (println "(w " f " " arg2 ") is " (fmt "%.15f" (w f 0)))
 )
