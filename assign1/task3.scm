@@ -24,7 +24,7 @@
             ((< prev-guess guess) (/ guess prev-guess))
             (else (/ prev-guess guess))
         ) 
-        1.000001)
+        1.0000000001)
 )
 
 (define (root-n n)
