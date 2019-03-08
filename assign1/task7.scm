@@ -5,8 +5,7 @@
 (define (halve n)
     (define (helper source store) 
         (cond 
-            ((<= source 0) store)
-            ((= source 1) store)
+            ((<= source 1) store)
             (else (helper (- source 2) (+ store 1)))
         )
     )
