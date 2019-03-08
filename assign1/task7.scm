@@ -3,24 +3,68 @@
 )
 
 (define (halve n)
-    (define (helper source store) 
-        (cond 
-            ((<= source 1) store)
-            (else (helper (- source 2) (+ store 1)))
+    (define (helper source store)
+        (cond
+            ((= source 0) store)
+            (else 
+                (helper 
+                    (- source
+                        (pow-2 (glp source))
+                    )
+                    (+ store
+                        (pow-2 (- (glp source) 1))
+                    )
+                )
+            )
         )
     )
-    (helper n 0)
+    (helper n 0)    
+)
+
+(define (glp n)         ;get largest power
+    (define (helper i)
+        (cond 
+            ((> (pow-2 i) n) (- i 1))
+            (else 
+                (helper (+ i 1))
+            )
+        )
+    )
+    (helper 0)
 )
 
 (define (div2? n)
     (define (helper source store) 
         (cond 
-            ((<= source 0) #t)
+            ((= source 0) #t)
             ((= source 1) #f)
-            (else (helper (- source 2) (+ store 1)))
+            (else 
+                (helper 
+                    (- source
+                        (pow-2 (glp source))
+                    )
+                    (+ store
+                        (pow-2 (- (glp source) 1))
+                    )
+                )
+            )        
         )
     )
     (helper n 0)
+)
+
+(define (pow-2 x)
+    (cond ((= x 0) 1)
+        ((< x 0) 0)
+        (else
+            (define (helper i store)
+                (cond 
+                    ((= i (- x 1)) store)
+                    (else (helper (+ i 1) (+ store store))))
+            )
+            (helper 0 2)
+        )
+    )
 )
 
 (define (ethiop a b)
