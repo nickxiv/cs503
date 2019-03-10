@@ -91,5 +91,4 @@
     (println "(double " arg1 ") is " (double arg1))
     (println "(div2? " arg1 ") is " (div2? arg1))
     (println "(ethiop " arg1 " "arg2 ") is " (ethiop arg1 arg2))
-    (println)
 )

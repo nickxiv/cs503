@@ -1,0 +1,30 @@
+#!/bin/bash
+# Author: Jake Wachs
+# Testing assign1
+
+for i in {4..9}; do
+    echo
+    echo "Running task$i"
+    echo "______________"
+    for j in {0..10}; do
+        echo "Task$i - Test$j"
+        echo "---------------"
+
+        if [[ i -ge 8 ]]; then
+            TASK="task$i"
+            R="r"
+            I="i"
+            FILE1="$TASK$R"
+            FILE2="$TASK$I"
+
+            scam -r $FILE1.scm submission0/$FILE1.$j > outputs/t$i.$j.r
+            scam -r $FILE2.scm submission0/$FILE2.$j > outputs/t$i.$j.i
+
+            diff -s -q submission0/$FILE1.$j.expected outputs/t$i.$j.r
+            diff -s -q submission0/$FILE2.$j.expected outputs/t$i.$j.i
+        else
+            scam -r task$i.scm submission0/task$i.$j > outputs/t$i.$j
+            diff -s -q submission0/task$i.$j.expected outputs/t$i.$j
+        fi
+    done
+done
