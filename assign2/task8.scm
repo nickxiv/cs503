@@ -7,6 +7,7 @@
     (node value nil nil)
 )
 
+
 (define (displayBST root)
 (define (iter root indent)
     (if (valid? root)
@@ -23,22 +24,17 @@
 )
 
 (define (insertBST root val)
-    (println "INSERT " val)
     (cond
         ((nil? root)                       ;insert into empty tree
-            (println "BASE CASE")
             (newBST val)
         )
         ((< val (root'value))              ;insert val < root
-            (println "INSERT LEFT")
-            (set (root'left) (insertBST (root'left) val))
+            (node (root'value) (insertBST (root'left) val) (root'right))
         )
-        (else                                   ;insert val > root
-            (println "INSERT RIGHT")
-            (set (root'right) (insertBST (root'right) val))
+        (else                              ;insert val > root
+            (node (root'value) (root'left) (insertBST (root'right) val))
         )
     )
-    ; root
 )
 
 (define (main)

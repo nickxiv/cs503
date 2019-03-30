@@ -1,5 +1,6 @@
-other/*
-
+report
 *.args
+
+other
 */.scam_history
-other/
+*/tests
