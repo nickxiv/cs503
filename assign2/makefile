@@ -15,3 +15,4 @@ test:
 	scam -r task4.scm tests/task4.3
 	scam -r task4.scm tests/task4.4
 	scam -r task4.scm tests/task4.5
+	scam -r task6.scm tests/task6.9
