@@ -1,26 +1,47 @@
 (define (curry f @)
     (define nparams (length (get 'parameters f)))
-    (define (helper source store list)          ;list = list of params
+    (define givens @)
+    (define (helper source store)          
         (cond
-            ((= store nparams) 
-                (apply f list)
+            ((= store nparams)
+                (apply f givens)
             )
             ((not (valid? source))
                 (lambda (@)
-                    (define new-params (append-lists @ list))
+                    (define new-params 
+                        (cond 
+                            ((nil? givens) (flatten @))
+                            (else (flatten (list givens @)))
+                        )
+                    )
                     (cond 
-                        ((= nparams (length new-params)) (apply f new-params))
+                        ((= nparams (length new-params))
+                            (apply f new-params)
+                        )
                         (else (curry f new-params))
                     )
                 )
             ) 
             (else
-                (helper (cdr source) (+ store 1) (append-lists source list))    
+                (helper (cdr source) (+ store 1))    
             )
         )
     )
-    (helper @ 0 nil)
+    (helper givens 0)
 )
+
+(define (flatten list)
+  (cond 
+        ((nil? list) nil)
+        ((pair? (car list))
+            (append (flatten (car list))
+                    (flatten (cdr list))
+            )
+        )
+        (else (cons (car list) (flatten (cdr list))))
+    )
+)
+
 
 (define (far-car list)
     (define (helper source store)
