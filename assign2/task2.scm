@@ -43,29 +43,6 @@
 )
 
 
-(define (far-car list)
-    (define (helper source store)
-        (cond 
-            ((nil? source) store)
-            (else (helper (car source) source))
-        )
-    )
-    (helper list nil)
-)
-
-(define (append-lists l1 l2)
-    (define (helper source store)
-        (cond 
-            ((nil? source)
-                store
-            )
-            (else (helper (cdr source) (cons (car source) store)))
-        )
-    )
-    (helper l2 l1)
-)
-
-
 (define (main)
     (setPort (open (getElement ScamArgs 1) 'read))
     (define env this)
