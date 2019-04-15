@@ -1,6 +1,11 @@
 (define (replace f list)
-    (inspect (get 'code f))
-    (inspect list)
+    (define code (cadr (get 'code f)))
+    (check-replace code list)
+)
+
+(define (check-replace line vars)
+    (inspect line)
+    (inspect vars)
 )
 
 (define (main)
