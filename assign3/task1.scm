@@ -1,20 +1,29 @@
-(define (check-builtin obj sym)
-    'oof
-)
-
 (define (scoping sym obj)
-    ; (ppTable obj)
-    (define vars (cadr obj))
-    ; (inspect vars)
-    (define start (cdddddr vars))
-    (define (helper source)
-        (cond
-            ((nil? source) (check-builtin obj sym))
-            ((eq? (car source) sym) 'bound)
-            (else (helper (cdr source)))
+    (define (helper source)             ;source is an environment/object
+        (cond 
+            ((nil? source)
+                'undefined
+            )
+            (else
+                (define (checkAllHelper vars)   ;vars is the list of variable names in the curr env
+                    (cond
+                        ((nil? vars)
+                            (helper (cadr (caddr source))) 
+                        )
+                        ((eq? (car vars) sym)
+                            (if (eq? obj source)
+                                'bound
+                                'free
+                            ) 
+                        )
+                        (else (checkAllHelper (cdr vars)))
+                    )
+                )
+                (checkAllHelper (cadr source))
+            )
         )
     )
-    (helper start)
+    (helper obj)
 )
 (define (main)
     (setPort (open (getElement ScamArgs 1) 'read))
