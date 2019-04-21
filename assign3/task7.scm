@@ -1,7 +1,7 @@
 (include "streams.scm")
 
 (define (mystery x)
-    (cons-stream 1.0 (mystery-addends x 2))
+    (cons-stream 1.0 (mystery-addends x 2.0))
 )
 
 (define (ps-mystery x)
@@ -35,7 +35,7 @@
                 (fact n)
             )
         )
-        (stream-map - (mystery-addends x (+ n 2)))
+        (stream-map - (mystery-addends x (+ n 2.0)))
     )
 )
 
