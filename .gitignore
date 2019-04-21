@@ -1,6 +1,3 @@
 report
-*.args
 
-other
 */.scam_history
-*/tests
