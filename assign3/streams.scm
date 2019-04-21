@@ -1,5 +1,7 @@
 (define scar stream-car)
 (define scdr stream-cdr)
+(define ones (cons-stream 1 ones))
+(define wholes (cons-stream 0 (combine-streams + ones wholes)))
 
 ;from class
 (define (sdisplay n z)
@@ -42,6 +44,17 @@
         )
     )
 )
+;from class
+(define (pairs s t)
+    (cons-stream
+        (list (stream-car s) (stream-car t))
+        (merge 
+            (stream-map (lambda (x) (list (stream-car s) x)) (stream-cdr t))
+            (pairs (stream-cdr s) (stream-cdr t))    
+        )
+    )
+)
+
 
 ;from page 319 of SICP
 (define (stream-ref s n)
