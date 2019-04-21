@@ -1,0 +1,7 @@
+(define (inspect # $expr)
+    (println $expr " is of course " (eval $expr #))
+)
+(inspect (apply array (list 1 2 3 4 5)))
+(inspect apply)
+(inspect (car apply))
+(inspect (cdr apply))

@@ -1,0 +1,3 @@
+------------------------------------
+EXCEPTION: undefinedVariable
+file ./tests/task3.2,line 1: variable deque is undefined

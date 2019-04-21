@@ -1,0 +1,4 @@
+(scoping (quote x) obj) is oof
+(scoping (quote a) obj) is oof
+(scoping (quote b) obj) is bound
+(scoping (quote define) obj) is oof

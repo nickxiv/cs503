@@ -1,0 +1,3 @@
+------------------------------------
+EXCEPTION: undefinedVariable
+file ./tests/task8.0,line 1: variable sdisplay is undefined

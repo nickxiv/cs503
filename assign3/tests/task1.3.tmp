@@ -1,0 +1,3 @@
+(scoping (quote x) this) is oof
+(scoping (quote this) this) is oof
+(scoping (quote quote) this) is oof
