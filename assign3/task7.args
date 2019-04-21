@@ -7,7 +7,7 @@ Expected:
 (mystery x) is $\cos x$
 ;}
 
-(define x -8)
+(define x 0)
 (sdisplay 5 (mystery x)) (println)
 (sdisplay 5 (ps-mystery x)) (println)
 (sdisplay 5 (acc-mystery x)) (println)
