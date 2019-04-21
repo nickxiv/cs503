@@ -35,12 +35,12 @@
 
 (define (mystery-addends x n)
     (cons-stream
-        ; (- 
-        (/
-            (x^n x n)
-            (fact n)
+        (- 
+            (/
+                (^ x n)
+                (fact n)
+            )
         )
-        ; )
         (stream-map - (mystery-addends x (+ n 2.0)))
     )
 )
@@ -69,20 +69,7 @@
     )
 )
 
-(define (x^n x n)
-    (define (helper source store)
-        (cond 
-            ((= source 1)
-                store)
-            (else 
-                (helper (- source 1) (* x store))    
-            )
-        )
-    )
-    (helper n x)
-)
-
-(define (square x) (x^n x 2.0))
+(define (square x) (^ x 2.0))
 
 (define (fact n)
     (define (helper source store)
