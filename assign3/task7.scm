@@ -19,7 +19,7 @@
 )
 
 (define (super-mystery x)
-    (stream-map scar (make-tableau euler-transform (ps-mystery x)))
+    (accelerated-sequence euler-transform (ps-mystery x))
 )
 
 (define (make-tableau transform s)
@@ -29,6 +29,9 @@
     )
 )
 
+(define (accelerated-sequence transform s)
+    (stream-map scar (make-tableau transform s))
+)
 
 (define (mystery-addends x n)
     (cons-stream
@@ -38,7 +41,7 @@
                 (fact n)
             )
         )
-        (stream-map - (mystery-addends x (+ n 2)))
+        (stream-map - (mystery-addends x (+ n 2.0)))
     )
 )
 
@@ -47,19 +50,17 @@
 )
 
 (define (euler-transform s)
-    ; (define (stream-ref s 0) (stream-ref s 0))
-    ; (define (stream-ref s 1) (stream-ref s 1))
-    ; (define (stream-ref s 2) (stream-ref s 2))
-
     (cons-stream
         (cond
-            ((= 0.0 (+ (stream-ref s 0) (* -2 (stream-ref s 1)) (stream-ref s 2))) (stream-ref s 2))
+            ((= 0.0 (+ (stream-ref s 0) (* -2 (stream-ref s 1)) (stream-ref s 2))) 
+                (stream-ref s 2)
+            )
             (else 
                 (- 
                     (stream-ref s 2)
                     (/ 
                         (square (- (stream-ref s 2) (stream-ref s 1)))
-                        (+ (stream-ref s 0) (* -2 (stream-ref s 1)) (stream-ref s 2))
+                        (+ (stream-ref s 0) (* -2.0 (stream-ref s 1)) (stream-ref s 2))
                     )
                 )
             )
@@ -80,7 +81,7 @@
     (helper n x)
 )
 
-(define (square x) (x^n x 2))
+(define (square x) (x^n x 2.0))
 
 (define (fact n)
     (define (helper source store)
@@ -91,7 +92,7 @@
             )
         )
     )
-    (helper n 1)
+    (helper n 1.0)
 )
 (define (main)
     (setPort (open (getElement ScamArgs 1) 'read))
