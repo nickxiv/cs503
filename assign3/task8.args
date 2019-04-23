@@ -1,1 +1,4 @@
-(sdisplay 100 (ramanujan)) (println)
+(sdisplay 100 
+    (weighted-pairs integers integers cube-sum))
+(println)
+(sdisplay 4 (ramanujan))

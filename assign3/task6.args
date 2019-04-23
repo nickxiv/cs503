@@ -1,9 +1,12 @@
-(define qs (quad 1 2 2 0.0125000000))
-(define is (integrate qs 0.0125000000))
-(define ds (derivate is 0.0125000000 (stream-car qs)))
+(define qs (quad 0 -3 1 0.0833333333))
+(define is (integrate qs 0.0833333333))
+(define ds (derivate is 0.0833333333 (stream-car qs)))
 (sdisplay 5 qs) (println)
 (sdisplay 5 is) (println)
-(println "expected = 
-(2.0000000000,2.0251562500,2.0506250000,2.0764062500,2.1025000000,...)")
-(println "computed = ")
+(println "
+expected:
+(1.0000000000,0.7500000001,0.5000000002,0.2500000003,4.000003e-10,...)
+"
+)
 (sdisplay 5 ds) (println)
+(inspect (same-stream? qs ds 10 .001))

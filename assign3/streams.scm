@@ -1,7 +1,7 @@
 (define scar stream-car)
 (define scdr stream-cdr)
 (define ones (cons-stream 1 ones))
-(define integers (cons-stream 1 (combine-streams + ones wholes)))
+(define integers (cons-stream 1 (combine-streams + ones integers)))
 (define wholes (cons-stream 0 (combine-streams + ones wholes)))
 
 ;from class
