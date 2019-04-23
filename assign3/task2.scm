@@ -20,9 +20,10 @@
     (helper old-params nil)
 )
 
+
 (define (build-new-body old-body replacements)
     (cond 
-        ((equal? (car old-body) 'quote) old-body)
+        ((equal? (car old-body) 'quote) (cons (compare-all (car old-body) replacements) (cdr old-body)))
         (else (define (helper source store)
             (cond 
                 ((nil? source)(reverse store))

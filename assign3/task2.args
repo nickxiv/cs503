@@ -1,20 +1,20 @@
-;{
-EXPECTED:
-(quote (lambda (z) (+ (* x y) z))) is (lambda (z) (+ (* x y) z))
-(almost-square 24) is 625
-(define (almost-square x)
-    ((lambda (y) (inspect (quote (lambda (z) (+ (* x y) z)))) (<builtin *(@)> y y)) (<builtin +(@)> x 1))
-    )
-(quote (lambda (z) (+ (* x y) z))) is (lambda (z) (+ (* x y) z))
-(almost-square 24) is 625
-;}
-
 (include "pretty.lib")
 (define (almost-square x)
     ((lambda (y)
-        (inspect '(lambda (z) (+ (* x y) z)))
+        (inspect (quote (lambda (z) (+ (* x y) z))))
         (* y y)) (+ x 1)))
-(inspect (almost-square 24))
-(replace almost-square (list '* * '+ +))
+(inspect (almost-square 95))
+(replace almost-square (list 'quote quote '* * '+ +))
 (pretty almost-square)
-(inspect (almost-square 24))
+(inspect (almost-square 95))
+
+(println "EXPECTED")
+(println "(quote (lambda (z) (+ (* x y) z))) is (lambda (z) (+ (* x y) z))
+(almost-square 95) is 9216
+(define (almost-square x)
+    ((lambda (y) (inspect (<builtin quote($item)> (lambda (z) (+ (* x y) z)))) (<builtin *(@)> y y)) (<builtin +(@)> x 1))
+    )
+(<builtin quote($item)> (lambda (z) (+ (* x y) z))) is (lambda (z) (+ (* x y) z))
+(almost-square 95) is 9216
+")
+

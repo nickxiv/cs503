@@ -1,1 +1,1 @@
-(sdisplay 1 (ramanujan)) (println)
+(sdisplay 100 (ramanujan)) (println)

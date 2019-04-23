@@ -29,13 +29,14 @@
 
 (define (mystery-addends x n)
     (cons-stream
-        (-
+        (*
+            -1.0
             (/
                 (^ x n)
                 (fact n)
             )
         )
-        (stream-map - (mystery-addends x (+ n 2.0)))
+        (stream-map (lambda (x) (* x -1.0)) (mystery-addends x (+ n 2.0)))
     )
 )
 

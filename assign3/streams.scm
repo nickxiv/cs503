@@ -1,6 +1,7 @@
 (define scar stream-car)
 (define scdr stream-cdr)
 (define ones (cons-stream 1 ones))
+(define integers (cons-stream 1 (combine-streams + ones wholes)))
 (define wholes (cons-stream 0 (combine-streams + ones wholes)))
 
 ;from class
@@ -63,4 +64,20 @@
         (stream-ref (scdr s) (- n 1))
     )
 )
+
+;from SICP
+(define (stream-filter pred stream)
+  (cond 
+    ((nil? stream) nil
+    ((pred (scar stream))
+        (cons-stream 
+            (scar stream)
+            (stream-filter pred (scdr stream))
+        )
+    )
+    (else 
+        (stream-filter pred (scdr stream))))
+    )
+)
+
 

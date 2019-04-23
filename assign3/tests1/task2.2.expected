@@ -1,0 +1,4 @@
+(define (square y)
+    (* y y)
+    )
+(square 37) is 1369

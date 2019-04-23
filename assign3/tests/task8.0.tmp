@@ -1,3 +1,0 @@
-------------------------------------
-EXCEPTION: generalException
-file task8.scm,line 4: wrong types for '*': CONS and CONS
